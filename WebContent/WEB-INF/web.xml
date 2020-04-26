@@ -23,4 +23,15 @@
   <error-code>500</error-code>
 	<location>/view/500.jsp</location>
   </error-page>
+  
+  <servlet>
+  	<description></description>
+  	<display-name>UserServlet</display-name>
+  	<servlet-name>UserServlet</servlet-name>
+  	<servlet-class>com.javaweb.servlet.UserServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>UserServlet</servlet-name>
+  	<url-pattern>*.do</url-pattern>
+  </servlet-mapping> 
 </web-app>

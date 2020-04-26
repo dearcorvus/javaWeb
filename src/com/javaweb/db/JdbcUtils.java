@@ -32,7 +32,7 @@ public class JdbcUtils {
 	 *數據遠只能被初始化一次，創建多個語法沒有錯誤 會佔用資源
 	 */
 	static {
-		dataSource = new ComboPooledDataSource("mvcapp");
+		dataSource = new ComboPooledDataSource("javaweb");
 	}
 	
 	public static Connection getConnection() throws SQLException {

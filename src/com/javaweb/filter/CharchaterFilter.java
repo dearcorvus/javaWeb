@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * ç‘™ï½…å–…éã„§ç¯æ¶”è¾©çˆœé—‚î‡€î•½é”›å±½î˜©éå—˜å¢éˆå¤Œæ®‘ç’‡é”‹çœ°
+ * ½â¾öÈ«Õ¾ÂÒÂëÎÊÌâ£¬´¦ÀíËùÓĞµÄÇëÇó
  */
 @WebFilter("/*")
 public class CharchaterFilter implements Filter {
@@ -18,17 +18,17 @@ public class CharchaterFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest req, ServletResponse rep, FilterChain filterChain) throws IOException, ServletException {
-        //çå—™åŸ—éºãƒ¥å½›æîƒ¿è´Ÿç€›æ„­å¸´é™ï¿½
+        //½«¸¸½Ó¿Ú×ªÎª×Ó½Ó¿Ú
         HttpServletRequest request = (HttpServletRequest) req;
         HttpServletResponse response = (HttpServletResponse) rep;
-        //é‘¾å³°å½‡ç’‡é”‹çœ°é‚è§„ç¡¶
+        //»ñÈ¡ÇëÇó·½·¨
         String method = request.getMethod();
-        //ç‘™ï½…å–…postç’‡é”‹çœ°æ¶“î…Ÿæƒéç‰ˆåµæ¶”è¾©çˆœé—‚î‡€î•½
+        //½â¾öpostÇëÇóÖĞÎÄÊı¾İÂÒÂëÎÊÌâ
         if(method.equalsIgnoreCase("post")){
             request.setCharacterEncoding("utf-8");
         }
-        //æ¾¶å‹­æ‚Šéå¶…ç°²æ¶”è¾©çˆœ
-        response.setContentType("text/html;charset=utf-8");
+        //´¦ÀíÏìÓ¦ÂÒÂë      
+
         filterChain.doFilter(request,response);
     }
 

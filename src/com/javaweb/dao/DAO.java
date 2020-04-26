@@ -11,6 +11,7 @@ import org.apache.commons.dbutils.handlers.BeanListHandler;
 import org.apache.commons.dbutils.handlers.ScalarHandler;
 
 import com.javaweb.db.JdbcUtils;
+import com.javaweb.domain.User;
 
 public class DAO<T> {
 
@@ -107,5 +108,6 @@ public class DAO<T> {
 		}
 		
 	}
+
 }
 

@@ -1,1 +1,3 @@
-<script>location.href="./view/login.jsp"</script>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<jsp:forward page="view/login.jsp"></jsp:forward>
