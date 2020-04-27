@@ -3,44 +3,70 @@ package com.javaweb.domain;
 public class User {
 	
 	private Integer id;
-	private String name;
-	private String password;
+	private String user_login;
+	private String user_pass;
 	
+	public User() {
+		
+	}	
 	
-	
+
+
+
 	public Integer getId() {
 		return id;
 	}
+
+
+
+
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	public String getName() {
-		return name;
+
+
+
+
+	public String getUser_login() {
+		return user_login;
 	}
-	public void setName(String name) {
-		this.name = name;
+
+
+
+
+	public void setUser_login(String user_login) {
+		this.user_login = user_login;
 	}
-	public String getPassword() {
-		return password;
+
+
+
+
+	public String getUser_pass() {
+		return user_pass;
 	}
-	public void setPassword(String password) {
-		this.password = password;
+
+
+
+
+	public void setUser_pass(String user_pass) {
+		this.user_pass = user_pass;
 	}
-	
-	
-	
-	
-	public User(Integer id, String name, String password) {
+
+
+
+
+	public User(Integer id, String user_login, String user_pass) {
 		super();
 		this.id = id;
-		this.name = name;
-		this.password = password;
+		this.user_login = user_login;
+		this.user_pass = user_pass;
 	}
-	public User() {
-		
-	}
+
+
+
+
 	@Override
 	public String toString() {
-		return "user [id=" + id + ", name=" + name + ", password=" + password + "]";
+		return "User [id=" + id + ", user_login=" + user_login + ", user_pass=" + user_pass + "]";
 	}
 }

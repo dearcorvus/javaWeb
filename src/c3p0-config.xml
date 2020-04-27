@@ -7,7 +7,7 @@
   	<property name="user">root</property>
   	<property name="password">root</property>
   	<property name="driverClass">com.mysql.jdbc.Driver</property>
-  	<property name="jdbcUrl">jdbc:mysql:///atguigu</property>
+  	<property name="jdbcUrl">jdbc:mysql://122.51.113.23:3306/javaweb</property>
   
     <property name="acquireIncrement">5</property>
     <property name="initialPoolSize">10</property>

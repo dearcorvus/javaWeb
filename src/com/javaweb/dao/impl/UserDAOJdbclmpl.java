@@ -10,8 +10,8 @@ public class UserDAOJdbclmpl extends DAO<User> implements UserDAO{
 
 	@Override
 	public List<User> getAll() {
-		// TODO Auto-generated method stub
-		return null;
+		String sql = "SELECT id, user_login, user_pass  FROM cmf_user";
+		return getForList(sql);
 	}
 
 	@Override
@@ -23,7 +23,7 @@ public class UserDAOJdbclmpl extends DAO<User> implements UserDAO{
 	@Override
 	public User get(String name) {
 		
-		String sql = "SELECT id, name, password FROM user WHERE name = ?";
+		String sql = "SELECT id, user_login, user_pass FROM cmf_user WHERE user_login = ?";
 		
 		return get(sql, name);
 	}

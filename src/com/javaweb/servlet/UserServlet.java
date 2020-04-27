@@ -13,8 +13,6 @@ import javax.servlet.http.HttpSession;
 
 import org.json.JSONObject;
 
-
-import com.javaweb.dao.CriteriaUser;
 import com.javaweb.dao.UserDAO;
 import com.javaweb.dao.factory.BaseFactory;
 import com.javaweb.dao.impl.UserDAOJdbclmpl;
@@ -80,9 +78,12 @@ public class UserServlet extends HttpServlet{
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 
+		
 		User user = userDAO.get(username);
-		System.out.print("123");
 		System.out.println(user);
+//		User user = userDAO.get(username);
+//		System.out.print("123");
+//		System.out.println(user);
 		
 	}
 }

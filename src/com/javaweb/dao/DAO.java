@@ -60,8 +60,9 @@ public class DAO<T> {
 		Connection connection = null;
 		
 		try {
+			System.out.print(111);
 			connection = JdbcUtils.getConnection();
-			
+			System.out.print(connection);
 			return queryRunner.query(connection, sql, new BeanListHandler<T>(clazz), args);
 			
 		} catch (Exception e) {
