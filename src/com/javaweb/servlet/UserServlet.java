@@ -3,7 +3,6 @@ package com.javaweb.servlet;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.lang.reflect.Method;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -11,10 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.json.JSONObject;
-
 import com.javaweb.dao.UserDAO;
 import com.javaweb.dao.factory.BaseFactory;
+import com.javaweb.dao.factory.MD5Factory;
 import com.javaweb.dao.impl.UserDAOJdbclmpl;
 import com.javaweb.domain.User;
 
@@ -51,6 +49,17 @@ public class UserServlet extends HttpServlet{
 	}
 	
 	private void doLogin(HttpServletRequest request, HttpServletResponse response) throws IOException {	
+		//编码
+		response.setContentType("application/json;charset=utf-8");
+		
+		PrintWriter out = response.getWriter();
+			
+		String method = request.getParameter("method");
+		
+		if("logout".equals(method)) {
+			logout(request,response);
+			return;
+		}
 		
 		
 		//获取验证码判断
@@ -62,14 +71,9 @@ public class UserServlet extends HttpServlet{
 		session.removeAttribute("CHECKCODE_SERVER");//验证码只是用一次
 
 		if(captcha == null || !check_server.equalsIgnoreCase(captcha)) {
-            //验证码错误
-			response.setContentType("application/json;charset=utf-8");
 	        //list值存入json中
-			PrintWriter out = response.getWriter();
-
-			String msg = base.retuenShow("验证码错误", 0);
+			String msg = base.errorShow("验证码错误");
 	        //输出jsoncode
-	        System.out.println(msg);
 	        out.print(msg);
             return;
 			
@@ -80,10 +84,24 @@ public class UserServlet extends HttpServlet{
 
 		
 		User user = userDAO.get(username);
-		System.out.println(user);
-//		User user = userDAO.get(username);
-//		System.out.print("123");
-//		System.out.println(user);
+
+		if(user == null || !user.getUser_pass().equals(MD5Factory.md5(username))) {
+				
+			String msg = base.errorShow("密码错误");
+	        //输出jsoncode
+	        out.print(msg);
+            return;	
+		}
+		session.setAttribute("username", username);
+		String msg = base.successShow("登录成功","mainServlet");
+        //输出jsoncode
+        out.print(msg);
+        return;	
 		
+	}
+	
+	private void logout(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		request.getSession().removeAttribute("username");
+		response.sendRedirect("mainServlet");
 	}
 }
