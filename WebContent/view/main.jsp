@@ -105,9 +105,9 @@
                        	<li>
                              <a href="javascript:;"><i class="fa fa-cog"></i> 网站信息</a></li>
                          <li>
-                             <a href="javascript:;"><i class="fa fa-user"></i> 个人信息</a></li>
+                             <a href="javascript:openapp('doUser.do','user','个人信息');"><i class="fa fa-user"></i> 个人信息</a></li>
                          <li>
-                             <a href="javascript:;"><i class="fa fa-lock"></i> 密码修改</a>
+                             <a href="javascript:openapp('doPass.do','pass','密码修改');"><i class="fa fa-lock"></i> 密码修改</a>
                          </li>
 
                         <li><a href="logout.do"><i class="fa fa-sign-out"></i>退出 </a></li>

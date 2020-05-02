@@ -55,9 +55,8 @@ public class User {
 
 
 
-	public User(Integer id, String user_login, String user_pass) {
+	public User(String user_login, String user_pass) {
 		super();
-		this.id = id;
 		this.user_login = user_login;
 		this.user_pass = user_pass;
 	}

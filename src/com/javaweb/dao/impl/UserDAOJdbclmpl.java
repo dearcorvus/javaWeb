@@ -27,7 +27,7 @@ public class UserDAOJdbclmpl extends DAO<User> implements UserDAO{
 		
 		return get(sql, name);
 	}
-
+	
 	@Override
 	public void delete(Integer id) {
 		// TODO Auto-generated method stub
@@ -36,7 +36,9 @@ public class UserDAOJdbclmpl extends DAO<User> implements UserDAO{
 
 	@Override
 	public void update(User user) {
-		// TODO Auto-generated method stub
+		String sql = "UPDATE cmf_user SET user_login = ? ,user_pass = ? WHERE id = ?";
+		
+		update(sql, user.getUser_login(),user.getUser_pass(),user.getId()); 
 		
 	}
 
@@ -44,6 +46,14 @@ public class UserDAOJdbclmpl extends DAO<User> implements UserDAO{
 	public long getCountWithName(String name) {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public User get(Integer id) {
+		
+		String sql = "SELECT id, user_login, user_pass FROM cmf_user WHERE id = ?";
+		
+		return get(sql, id);
 	}
 	
 }

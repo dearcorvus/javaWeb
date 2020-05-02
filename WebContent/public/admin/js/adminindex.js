@@ -139,7 +139,7 @@ function openapp(url, appId, appname, refresh) {
         $appiframe.appendTo("#content");
         $appiframe.load(function () {
             var srcLoaded = $appiframe.get(0).contentWindow.location;
-            if (srcLoaded.pathname == GV.ROOT) {
+            if (srcLoaded.pathname) {
                 window.location.reload(true);
             }
             $loading.hide();

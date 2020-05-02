@@ -34,4 +34,16 @@
   	<servlet-name>UserServlet</servlet-name>
   	<url-pattern>*.do</url-pattern>
   </servlet-mapping> 
+  
+  <servlet>
+  	<description></description>
+  	<display-name>MainServlet</display-name>
+  	<servlet-name>MainServlet</servlet-name>
+  	<servlet-class>com.javaweb.servlet.MainServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>MainServlet</servlet-name>
+  	<url-pattern>*.main</url-pattern>
+  </servlet-mapping>  
+  
 </web-app>
