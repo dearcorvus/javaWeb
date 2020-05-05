@@ -76,49 +76,23 @@
 <body>
 	<div class="wrap">
 		<ul class="nav nav-tabs">
-			<li class="active"><a href="doUser.do">个人信息</a></li>
-			<li><a href="doPass.do">密码修改</a></li>
+			<li class="active"><a href="category.cat">分类管理</a></li>
+			<li><a href="addCategory.cat">添加分类</a></li>
 		</ul>
-		<form class="form-horizontal js-ajax-form margin-top-20" role="form" method="post" action="setUser.do">
-			<div class="form-group">
-				<label for="input-user-nickname" class="col-sm-2 control-label">昵称</label>
-				<div class="col-md-6 col-sm-10">
-					<input type="text" class="form-control" id="input-user-nickname" name="user_nickname" value="${user.user_nickname}">
-				</div>
+		<form method="post" class="js-ajax-form" action="{:url('AdminCategory/listOrder')}">
+			<div class="table-actions">
+				
 			</div>
-			<div class="form-group">
-				<label for="input-gender" class="col-sm-2 control-label">性别</label>
-				<div class="col-md-6 col-sm-10">
-					<select class="form-control" name="sex" id="input-gender">
-						<option value="0" ${user.sex == 0 ? "selected" : ""} >保密</option>
-						<option value="1" ${user.sex == 1 ? "selected" : ""} >男</option>
-						<option value="2" ${user.sex == 2 ? "selected" : ""} >女</option>
-					</select>
-				</div>
-			</div>
-			<div class="form-group">
-				<label for="input-birthday" class="col-sm-2 control-label">生日</label>
-				<div class="col-md-6 col-sm-10">
-					<input type="text" class="form-control js-bootstrap-date" id="input-birthday" name="birthday" value="${date}" placeholder="2013-01-04">
-				</div>
-			</div>
-			<div class="form-group">
-				<label for="input-user_url" class="col-sm-2 control-label">个人网址</label>
-				<div class="col-md-6 col-sm-10">
-					<input type="text" class="form-control" id="input-user_url" name="user_url" value="${user.user_url}" placeholder="http://wuya.group">
-				</div>
-			</div>
-			<div class="form-group">
-				<label for="input-signature" class="col-sm-2 control-label">个人签名</label>
-				<div class="col-md-6 col-sm-10">
-					<textarea class="form-control" id="input-signature" name="signature" placeholder="个性签名">${user.signature}</textarea>
-				</div>
-			</div>
-			<div class="form-group">
-				<div class="col-sm-offset-2 col-sm-10">
-					<button type="submit" class="btn btn-primary js-ajax-submit">保存</button>
-				</div>
-			</div>
+			<table class="table table-hover table-bordered table-list">
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>分类名称</th>
+					</tr>
+				</thead>
+				<tbody>
+				</tbody>
+			</table>
 		</form>
 	</div>
 	<script src="<%=request.getContextPath()%>/public/admin/js/admin.js"></script>

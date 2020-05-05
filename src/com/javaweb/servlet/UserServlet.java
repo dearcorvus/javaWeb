@@ -3,6 +3,9 @@ package com.javaweb.servlet;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.lang.reflect.Method;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -57,9 +60,21 @@ public class UserServlet extends HttpServlet{
 	 */
 	@SuppressWarnings("unused")
 	private void doUser(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		HttpSession session = request.getSession();
+		Integer userid = (Integer) session.getAttribute("userId");
+		User user = userDAO.get(userid);
+		
+		Date date =new Date();
+		SimpleDateFormat dates = new SimpleDateFormat("yyyy-MM-dd");
+		String str_date = dates.format(user.getBirthday());	
 
 		try {
-			request.getRequestDispatcher("/view/adminUser.jsp").forward(request, response);
+			if(user != null) {
+				request.setAttribute("user", user);
+				request.setAttribute("date", str_date);
+				request.getRequestDispatcher("/view/adminUser.jsp").forward(request, response);		
+			}
+
 		} catch (ServletException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -158,6 +173,7 @@ public class UserServlet extends HttpServlet{
 		//编码
 		response.setContentType("application/json;charset=utf-8");
 		PrintWriter out = response.getWriter();
+		HttpSession session = request.getSession();
 		
 		String old_pass = request.getParameter("old_password");
 		String password = request.getParameter("password");
@@ -173,27 +189,62 @@ public class UserServlet extends HttpServlet{
 	        out.print(msg);
 	        return;				
 		}
-		HttpSession session = request.getSession();
+		
 		String username = (String)session.getAttribute("username");
 		Integer userid = (Integer)session.getAttribute("userId");
 		
 		User user = userDAO.get(userid);
-		System.out.print(old_pass);
-		System.out.print(user.getUser_pass());
+
 		if(user == null || !user.getUser_login().equals(username) || !user.getUser_pass().equals(MD5Factory.md5(old_pass))) {
 			String msg = BaseFactory.errorShow("原密码错误！");
 	        out.print(msg);
 	        return;		
 		}
 		
-		User users = new User(username,password);
-		System.out.print(users);				
+		User users = new User(username,MD5Factory.md5(password));
+				
 		users.setId(userid);
 		userDAO.update(users);
 					
 		String msg = BaseFactory.successShow("保存成功","");
         out.print(msg);
         return;	
+	}
+	
+	@SuppressWarnings("unused")
+	private void setUser(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		//编码
+		response.setContentType("application/json;charset=utf-8");
+		HttpSession session = request.getSession();
+		PrintWriter out = response.getWriter();
+		
+		String nickname = request.getParameter("user_nickname");
+		String sex = request.getParameter("sex");
+		String birthday = request.getParameter("birthday");
+		String url = request.getParameter("user_url");
+		String signature = request.getParameter("signature");
+		Integer userid = (Integer)session.getAttribute("userId");
+		
+		//将日期转为时间戳
+		 SimpleDateFormat format =  new SimpleDateFormat("yyyy-MM-dd");  
+
+		 Date date = null;
+		try {
+			date = format.parse(birthday);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}  
+		 //日期转时间戳（毫秒）
+		long time= date.getTime();
+		
+		User users = new User(nickname, sex, time, url, signature);
+		users.setId(userid);
+		userDAO.updates(users);
+		
+		String msg = BaseFactory.successShow("保存成功","");
+        out.print(msg);
+        return;			
 		
 	}
 }

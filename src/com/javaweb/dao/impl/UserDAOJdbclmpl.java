@@ -41,7 +41,14 @@ public class UserDAOJdbclmpl extends DAO<User> implements UserDAO{
 		update(sql, user.getUser_login(),user.getUser_pass(),user.getId()); 
 		
 	}
+	@Override
+	public void updates(User user) {
+		String sql = "UPDATE cmf_user SET user_nickname = ? ,sex = ? ,birthday = ? ,user_url = ? ,signature = ? WHERE id = ?";
 
+		update(sql, user.getUser_nickname(), user.getSex(), user.getBirthday(), user.getUser_url(), user.getSignature(), user.getId());
+		
+	}
+	
 	@Override
 	public long getCountWithName(String name) {
 		// TODO Auto-generated method stub
@@ -51,7 +58,7 @@ public class UserDAOJdbclmpl extends DAO<User> implements UserDAO{
 	@Override
 	public User get(Integer id) {
 		
-		String sql = "SELECT id, user_login, user_pass FROM cmf_user WHERE id = ?";
+		String sql = "SELECT id, user_login, user_pass, user_nickname, sex, birthday,  user_url, signature   FROM cmf_user WHERE id = ?";
 		
 		return get(sql, id);
 	}

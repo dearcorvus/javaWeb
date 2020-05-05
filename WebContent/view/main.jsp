@@ -72,7 +72,7 @@
                 <a id="task-pre" class="task-changebt"><i class="fa fa-chevron-left"></i></a>
                 <div id="task-content">
                     <ul class="nav navbar-nav cmf-component-tab" id="task-content-inner">
-                        <li class="cmf-component-tabitem noclose" app-id="0" app-url="{:url('main/index')}"
+                        <li class="cmf-component-tabitem noclose" app-id="0" app-url=""
                             app-name="首页">
                             <a class="cmf-tabs-item-text">首页</a>
                         </li>
@@ -128,11 +128,11 @@
                data-toggle="tooltip">
                 <i class="fa fa-home"></i>
             </a>
-            <a class="btn btn-sm btn-success" href="javascript:openapp('{:url('portal/AdminCategory/index')}','index_termlist','文章分类管理');" title="文章分类管理">
+            <a class="btn btn-sm btn-success" href="javascript:openapp('category.cat','index_termlist','文章分类管理');" title="文章分类管理">
                 <i class="fa fa-th"></i>
             </a>
 
-            <a class="btn btn-sm btn-info" href="javascript:openapp('{:url('portal/AdminArticle/index')}','index_postlist','文章管理');" title="文章管理">
+            <a class="btn btn-sm btn-info" href="javascript:openapp('Category.main','index_postlist','文章管理');" title="文章管理">
                 <i class="fa fa-pencil"></i>
             </a>
 

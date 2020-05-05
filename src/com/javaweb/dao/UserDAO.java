@@ -18,5 +18,7 @@ public interface UserDAO {
 	
 	public void update(User user);
 	
+	public void updates(User user);
+	
 	public long getCountWithName(String name);
 }
